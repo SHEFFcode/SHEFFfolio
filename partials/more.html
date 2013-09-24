@@ -18,12 +18,12 @@
 	<input type="radio" ng-model="orderProp" value="size">Project size</input>
 </menu>
 
-<div ng-repeat="work in works | filterWorks: {'key':'type', 'values':type} | filterWorks: {'key':'participation', 'values':participation} | filterWorks: {'key':'seriousness', 'values':seriousness} | orderBy:orderProp:true">
-	<a href="{{work.link.href}}" title="{{work.link.title}}" target="_blank" class="work">
-		<img class="icon" ng-src="img/icons/{{work.id}}.png" alt="{{work.title}}"/>
-		<p class="title">{{work.title}}</p>
-		<p class="category">{{work.category}}</p>
-		<p class="date">{{work.date}}</p>
-		<p class="description">{{work.description}}</p>
-	</a>
+<div>
+<a ng-repeat="work in works | filterWorks: {'key':'type', 'values':type} | filterWorks: {'key':'participation', 'values':participation} | filterWorks: {'key':'seriousness', 'values':seriousness} | orderBy:orderProp:true" href="{{work.link.href}}" title="{{work.link.title}}" target="_blank" class="work">
+	<img class="icon" ng-src="img/icons/{{work.id}}.png" alt="{{work.title}}"/>
+	<p class="title">{{work.title}}</p>
+	<p class="category">{{work.category}}</p>
+	<p class="date">{{work.date}}</p>
+	<p class="description">{{work.description}}</p>
+</a>
 </div>
