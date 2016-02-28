@@ -3,33 +3,52 @@
 <html>
   <head>
     <title>Jeremy Shefer</title>
-
+    <meta charset="utf-8">
     <meta name="viewport"  content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="SHEFFolio">
+    <meta name="author" content="Jeremy Shefer">
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#000">
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#000">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="JSP">
+    <link rel="icon" sizes="48x48" href="icon-48.svg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Jeremy's Portfolio">
+    <link rel="apple-touch-icon" href="icon-48.svg">
 
-    <meta name="description" content="Personal works">
-    <meta name="author" content="Steren Giannini">
-
-    <link rel="icon" sizes="192x192" href="http://127.0.0.1:50651/icon48.svg">
-    <link rel="icon" sizes="32x32"   href="http://127.0.0.1:50651/icon24.svg" >
+    <link rel="icon" sizes="48x48" href="icon48.svg">
+    <link rel="icon" sizes="24x24"   href="icon24.svg" >
 
     <meta name="theme-color" content="#009688">
 
-    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="components/webcomponentsjs/webcomponents.js"></script>
 
-    <link rel="import" href="bower_components/font-roboto/roboto.html">
-    <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-    <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
-    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-    <link rel="import" href="bower_components/core-label/core-label.html">
-    <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
-    <link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
-    <link rel="import" href="bower_components/paper-item/paper-item.html">
+    <link rel="import" href="components/paper-styles/paper-styles.html">
+    <link rel="import" href="components/paper-header-panel/paper-header-panel.html">
+    <link rel="import" href="components/paper-drawer-panel/paper-drawer-panel.html">
+    <link rel="import" href="components/paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="components/iron-label/iron-label.html">
+    <link rel="import" href="components/paper-tabs/paper-tabs.html">  
+    <link rel="import" href="components/paper-menu-button/paper-menu-button.html">
+    <link rel="import" href="components/paper-item/paper-item.html">
+    <link rel="import" href="components/iron-icons/iron-icons.html">
+    <link rel="import" href="components/iron-meta/iron-meta.html">
+    <link rel="import" href="components/iron-pages/iron-pages.html">
+    <link rel="import" href="components/paper-menu/paper-menu.html">
+    <link rel="import" href="sheff-contact.html">
+    <link rel="import" href="sheff-fun.html">
+
 
     <link rel="import" href="steren-works.html">
 
     <style>
       html,body {
-        height: calc(100% + 1px);
+        height: 100%;
         margin: 0;
         background-color: #E5E5E5;
         font-family: 'RobotoDraft', sans-serif;
@@ -39,15 +58,12 @@
         text-decoration:none;
       }
 
-      core-header-panel {
+      paper-header-panel {
         height: 100%;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
       }
-      core-toolbar {
-        background: #000;
-      }
-      core-toolbar, core-toolbar a, core-toolbar a:visited {
+      paper-toolbar, paper-toolbar a, paper-toolbar a:visited {
         color: white;
       }
 
@@ -59,7 +75,7 @@
         color: #000;
         opacity: 0.87;
       }
-      #drawer core-icon {
+      #drawer iron-icon {
         margin-right: 32px;
       }
 
@@ -67,7 +83,7 @@
         background: #eee;
       }
       /* core-icon should probably use this by default */
-      #drawer core-icon div {
+      #drawer iron-icon div {
         background-size: cover !important;
       }
       #drawer section {
@@ -102,109 +118,223 @@
         margin: 2em auto;
       }
 
+      paper-material {
+        border-radius: 2px;
+        height: 100%;
+        padding: 16px 0 16px 0;
+        width: calc(98.66% - 16px);
+        margin: 16px auto;
+        background: white;
+      }
+
+      @media (max-width: 600px) {
+        paper-material {
+          --menu-container-display: none;
+          width: calc(97.33% - 32px);
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+
+      @media (min-width: 601px) {
+        paper-material {
+          width: calc(98% - 46px);
+          margin-bottom: 32px;
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        iron-pages {
+          padding: 48px 62px;
+        }
+      }
+
+    </style>
+    <style is="custom-style">
+      paper-toolbar {
+        --paper-toolbar-background: #000;
+      }
+      paper-tabs{
+        --paper-tabs-selection-bar-color: #fff;
+      }
+      paper-tab{
+        --paper-tab-ink: #fff;
+      }
     </style>
   </head>
 
   <body unresolved>
-    <core-drawer-panel>
+    <constant-element></constant-element>
+    <paper-drawer-panel id="drawerPanel">
 
-      <core-header-panel drawer id="drawer">
+      <paper-header-panel drawer id="drawer">
 
         <section>
-          <h1>Jeremy Shefer</h1>
+          <a href="index.html#!/index.html"><h1>Jeremy Shefer</h1></a>
         </section>
 
         <section>
-          <a href="/">
-            <paper-item class="selected">
-              <core-icon icon="home"></core-icon>
-              Projects
-            </paper-item>
-          </a>
-          <a href="http://blog.steren.fr" target="_blank">
-            <paper-item>
-              <core-icon icon="subject"></core-icon>
-              Blog
-            </paper-item>
-          </a>
-          <a href="http://labs.steren.fr" target="_blank">
-            <paper-item>
-              <core-icon icon="explore" aria-label="star"></core-icon>
-              Labs
-            </paper-item>
-          </a>
+          <paper-menu>
+            <a onclick="home()" href="index.html#!/index.html" title="Projects">
+              <paper-item>
+                <iron-icon icon="icons:home"></iron-icon>
+                Projects
+              </paper-item>
+            </a>
+            <a onclick="fun()" href="#" title="Fun">
+              <paper-item>
+                <iron-icon icon="icons:face"></iron-icon>
+                Fun
+              </paper-item>
+            </a>
+            <a onclick="contact()" href="#" title="Contct">
+              <paper-item>
+                <iron-icon icon="icons:icons:perm-contact-calendar" aria-label="star"></iron-icon>
+                Contact
+              </paper-item>
+            </a>
+          </paper-menu>
         </section>
 
         <section>
-          <a href="https://twitter.com/steren" target="_blank">
+          <a href="https://twitter.com/sheffmachine" target="_blank">
             <paper-item>
-              <core-icon src="icons/twitter.svg" aria-label="Twitter"></core-icon>
+              <iron-icon src="img/icons/twitter.png" aria-label="Twitter"></iron-icon>
               Twitter
             </paper-item>
           </a>
-          <a href="https://plus.google.com/+SterenGiannini" target="_blank">
+          <a href="https://google.com/+JeremyShefer1" target="_blank">
             <paper-item>
-              <core-icon src="icons/google.svg" aria-label="Google"></core-icon>
+              <iron-icon src="img/icons/google.png" aria-label="Google"></iron-icon>
               Google+
             </paper-item>
           </a>
-          <a href="https://www.linkedin.com/in/steren" target="_blank">
+          <a href="https://www.linkedin.com/in/yuriy-shefer-c-p-a-82b2782b" target="_blank">
             <paper-item>
-              <core-icon src="icons/linkedin.svg" aria-label="LinkedIn"></core-icon>
+              <iron-icon src="img/icons/linkedin.png" aria-label="LinkedIn"></iron-icon>
               LinkedIn
             </paper-item>
           </a>
-          <a href="https://github.com/steren" target="_blank">
+          <a href="https://github.com/SHEFFcode" target="_blank">
             <paper-item>
-              <core-icon src="icons/github.svg" aria-label="GitHub"></core-icon>
+              <iron-icon src="img/icons/github.png" aria-label="GitHub"></iron-icon>
               GitHub
             </paper-item>
           </a>
         </section>
 
-      </core-header-panel>
+      </paper-header-panel>
 
-      <core-header-panel main>
-        <core-toolbar class="medium-tall">
-          <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
-          <div>Project Categories</div>
+      <paper-header-panel waterfall-medium-tall main>
+        <paper-toolbar class="medium-tall">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <div id="title">Project Categories</div>
 
-          <div class="bottom fit" horizontal="" layout="">
-            <paper-tabs id="tabs">
-              <paper-tab name="web">
-                <a href="/web" horizontal center-center layout>Web</a>
+          <div id="tabs-hide" class="bottom fit horizontal layout">
+            <paper-tabs class="flex" id="tabs">
+              <paper-tab onclick="web()">
+                <a href="#!/web" class="horizontal center-center layout">Web</a>
               </paper-tab>
-              <paper-tab name="ios">
-                <a href="/ios" horizontal center-center layout>iOS</a>
+              <paper-tab onclick="ios()">
+                <a href="#!/ios" class="horizontal center-center layout">iOS</a>
               </paper-tab>
-              <paper-tab name="data">
-                <a href="/data" horizontal center-center layout>Data</a>
+              <paper-tab onclick="data()">
+                <a href="#!/data" class="horizontal center-center layout">Data</a>
               </paper-tab>
             </paper-tabs>
           </div>
-        </core-toolbar>
+        </paper-toolbar>
 
         <div class="container" main>
 
-          <steren-works></steren-works>
+          <iron-pages attr-for-selected="data-route" selected="home">
+
+            <section data-route="home">
+              <steren-works></steren-works>
+            </section>
+
+            <section data-route="fun">
+              <sheff-fun></sheff-fun>
+            </section>
+
+            <section data-route="contact">
+              <sheff-contact></sheff-contact>
+            </section>
+
+
+          </iron-pages>
 
         </div>
 
-      </core-header-panel>
-    </core-drawer-panel>
+      </paper-header-panel>
+    </paper-drawer-panel>
 
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
     <script>
 
-      var tabs = document.querySelector('paper-tabs');
+    console.log = function() {}
+
+      var tabs =  Polymer.dom(document).querySelector('paper-tabs');
       var works = document.querySelector('steren-works');
 
-      page('/', function() { works.show = tabs.selected = 'all'; });
-      page('/web', function() { works.show = tabs.selected = 'web'; });
-      page('/ios', function() { works.show = tabs.selected = 'ios'; });
-      page('/data', function() { works.show = tabs.selected =  'data'; });
-      page({hashbang: true});
+      window.onload = function()
+      {
+        window.localStorage.clear();
+        localStorage.setItem("category", "web");
+      }
+
+      page('/',     function() { works.show = tabs.selected = 'all'; });
+      page('/web',  function() { works.show = tabs.selected = 'web'; });
+      page('/ios',  function() { works.show = tabs.selected = 'ios'; });
+      page('/data', function() { works.show = tabs.selected = 'data'; });
+      page({ hashbang: true });
+
+      var filter = "web";
+
+      function ios() {
+        document.querySelector('steren-works').show = 'ios';
+      }
+
+      function web() {
+        document.querySelector('steren-works').show = 'web';
+      }
+
+      function data(){
+        document.querySelector('steren-works').show = 'data';
+      }
+
+      function all() {
+        document.querySelector('steren-works').show = 'all';
+      }
+      
+      function home() {
+        document.getElementsByTagName("paper-toolbar")[0].classList.add("medium-tall");
+        document.getElementsByTagName("iron-pages")[0].removeAttribute("selected");
+        document.getElementsByTagName("iron-pages")[0].setAttribute("selected", "home");
+        document.getElementById("title").innerHTML ='Project Categories';
+        document.getElementById("tabs-hide").style.visibility = "visible";
+        document.getElementById("drawerPanel").closeDrawer();
+      }
+      
+      function fun() {
+        document.getElementsByTagName("paper-toolbar")[0].classList.remove("medium-tall");
+        document.getElementsByTagName("iron-pages")[0].removeAttribute("selected");
+        document.getElementsByTagName("iron-pages")[0].setAttribute("selected", "fun");
+        document.getElementById("title").innerHTML ='Fun Projects';
+        document.getElementById("tabs-hide").style.visibility = "hidden";
+        document.getElementById("drawerPanel").closeDrawer();
+      }
+      
+      function contact() {
+        document.getElementsByTagName("paper-toolbar")[0].classList.remove("medium-tall");
+        document.getElementsByTagName("iron-pages")[0].removeAttribute("selected");
+        document.getElementsByTagName("iron-pages")[0].setAttribute("selected", "contact");
+        document.getElementById("title").innerHTML ='Contact Me';
+        document.getElementById("tabs-hide").style.visibility = "hidden";
+        document.getElementById("drawerPanel").closeDrawer();
+      }
+
+      this.category = filter;
 
     </script>
 

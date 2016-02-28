@@ -1,77 +1,149 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
-
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/iron-ajax/iron-ajax.html">
+<link rel="import" href="components/paper-card/paper-card.html">
 <link rel="import" href="steren-work-service.html">
 <link rel="import" href="steren-work.html">
+<link rel="import" href="constant.html">
 
-<polymer-element name="steren-work-list" attributes="show order type participation seriousness">
-  <template>
-    <style>
+<dom-module id="steren-work-list">
+  <style>
     :host {
       display: block;
+      position: relative;
+      background-color: white;
+      width: 95%;
+      font-size: 1.2rem;
+      font-weight: 300;
+      background: #E5E5E5;
+      margin: 16px 16px 16px 16px;
+      border-radius: 2px;
+      max-width: 400px;
+    }  
+
+    :host(:hover) {
+      background-color: #DDDDDD;
+    }
+    :host(:active) {
+      background-color: #CCCCCC;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 16px;
+      margin-top: 0;
+    }
+    .image {
       width: 100%;
     }
-    </style>
+    .logo-container {
+      text-align: center;
+    }
+    .logo {
+      width: 40%;
+      margin: 20px;
+    }
+    .inside {
+      padding: 16px;
+    }
 
-    <steren-work-service id="service" works="{{works}}"></steren-work-service>
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    p {
+      margin: 0;
+      color: #000;
+    }
 
-    <div layout horizontal center-justified wrap hidden?="{{show != 'web'}}">
-      <template repeat="{{work in works | filterContain('type', 'web')}}">
-        <steren-work work={{work}}>
-        </steren-work>
-      </template>
-    </div>
+    paper-card{
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+  </style>
+  <template>
+    <iron-ajax id="ajax"
+               auto
+               url="data.json"
+               on-response="worksLoaded"
+               handleAs="json">
+    </iron-ajax>
     
-    <div layout horizontal center-justified wrap hidden?="{{show != 'ios'}}">
-      <template repeat="{{work in works | filterContain('type', 'ios')}}">
-        <steren-work work={{work}}>
-        </steren-work>
-      </template>
-    </div>
-    
-    <div layout horizontal center-justified wrap hidden?="{{show != 'data'}}">
-      <template repeat="{{work in works | filterContain('type', 'data')}}">
-        <steren-work work={{work}}>
-        </steren-work>
-      </template>
-    </div>
-    
-    <div layout horizontal center-justified wrap hidden?="{{show != 'all'}}">
-      <template repeat="{{work in works | filterContain('type', typeForFilter) | filterContain('participation', participationForFilter) | filterContain('seriousness', seriousnessForFilter) | orderBy(order) | reverse}}">
-        <steren-work work={{work}}>
-        </steren-work>
-      </template>
-    </div>
+    <constant-element></constant-element>
+    <iron-meta id="meta"></iron-meta>
+
+    <template is="dom-repeat" items="{{works}}" filter="{{show}}">
+
+      <div class="layout horizontal center center-justified wrap">
+        <paper-card heading="{{item.title}}">
+          <a class="link card" href="{{item.link.href}}" target="_blank">
+            <div class="card-content">
+              <div class="logo-container">
+                <img class="logo" src="{{item.logo}}" alt="">
+              </div>
+              <div class="inside">
+                <p>{{item.description}}<p>
+              </div>
+            </div>
+          </a>
+        </paper-card>
+      </div>
+    </template>
+
   </template>
-
   <script>
-  Polymer({
-    orderBy: function(items, key) {
-      var sorter = function (a, b) {
-        if (a[key] < b[key])  return -1;
-        if (a[key] > b[key]) return 1;
-        return 0;
-      };
-      return items.sort(sorter);
-    },
-    reverse: function(items) {
-      return items.reverse();
-    },
-    filterContain: function(items, key, values) {
-      return items.filter(function(item) {
-        return values.indexOf(item[key]) > -1;
-      });
-    },
-    filterProp: function(items, key) {
-      return items.filter(function(item) {
-        return item[key];
-      });
-    },
-    // Following functions are here to trigger a refresh on our repeat expression
-    // It does not refresh otherwise because some attributes are arrays.
-    // see bug https://github.com/Polymer/polymer-expressions/issues/28
-    typeChanged: function() { this.typeForFilter = this.type.slice();},
-    participationChanged: function() { this.participationForFilter = this.participation.slice();},
-    seriousnessChanged: function() { this.seriousnessForFilter = this.seriousness.slice();}
-  });
+    Polymer({
+      is: 'steren-work-list',
+      properties: {
+        owner: {
+          type: String,
+          value: "Daniel"
+        },
+        work: { 
+          type: {}
+        },
+        works: [],
+        hello: {
+          type: String,
+          notify: true
+        },
+        show1: {
+          type: String,
+          notify: true
+        }
+      },
+      web: function(item) {;
+        return item.type == 'web';
+      },
+      ios: function(item) {;
+        return item.type == 'ios';
+      },
+      data: function(item) {;
+        return item.type == 'data';
+      },
+      all: function(item) {;
+        return true;
+      },
+      ready: function(){
+        this.contacts = [
+          {
+            category: "Android"
+          },
+          {
+            category: "Web"
+          }
+         
+        ];
+
+         var aValue = localStorage.getItem("category");
+          console.log(aValue);
+      },
+      worksLoaded: function() {
+        // Make a copy of the loaded data
+        this.works = this.$.ajax.lastResponse.slice(0);
+        console.log(this.works);
+      }
+    });
+
   </script>
-</polymer-element>
+</dom-module>

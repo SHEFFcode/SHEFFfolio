@@ -1,0 +1,16 @@
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/iron-meta/iron-meta.html">
+
+<dom-module id="constant-element">
+  <template>
+        <iron-meta key="category" value="web"></iron-meta>
+  </template>
+  <script>
+  Polymer({
+    is: "constant-element",
+    ready: function(){
+      new Polymer.IronMeta({key: 'category', value: 'web'});
+    }
+  });
+  </script>
+</dom-module-element>

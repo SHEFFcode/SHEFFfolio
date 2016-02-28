@@ -1,0 +1,61 @@
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/google-youtube/google-youtube.html">
+
+
+<dom-module id="sheff-fun">
+  <template>
+    <style is="custom-style">
+      iron-autogrow-textarea{
+        --iron-autogrow-textarea: true;
+      }
+    </style>
+
+    <paper-material elevation="1">
+      <h2 class="page-title">Divvy Rap</h2>
+      <google-youtube
+                      video-id="XCB7eciR5cA"
+                      height="270px"
+                      width="480px"
+                      rel="0"
+                      start="5"
+                      autoplay="0"
+                      fluid="true">
+      </google-youtube>
+    </paper-material>
+
+    <paper-material elevation="1">
+      <h2 class="page-title">Chicago I Love You</h2>
+      <google-youtube
+                      video-id="ZzaU8v9Spec"
+                      height="270px"
+                      width="480px"
+                      rel="0"
+                      start="5"
+                      autoplay="0"
+                      fluid="true">
+      </google-youtube>
+    </paper-material>
+
+    <paper-material elevation="1">
+      <h2 class="page-title">Colorado</h2>
+      <google-youtube
+                      video-id="O1WZzGAjiSg"
+                      height="270px"
+                      width="480px"
+                      rel="0"
+                      start="5"
+                      autoplay="0"
+                      fluid="true">
+      </google-youtube>
+    </paper-material>
+
+    
+
+  </template>
+  <script>
+    Polymer({
+      is: "sheff-fun"
+    });
+
+  </script>
+  </dom-module-element>

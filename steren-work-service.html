@@ -1,31 +1,36 @@
-<!--<link rel="import" href="//www.polymer-project.org/0.5/components/polymer/polymer.html">-->
-<link rel="import" href="bower_components/polymer/polymer.html">
-<!--<link rel="import" href="//www.polymer-project.org/0.5/components/core-ajax/core-ajax.html">-->
-<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/iron-ajax/iron-ajax.html">
 
-<polymer-element name="steren-work-service" attributes="works">
+<dom-module id="steren-work-service">
   <template>
     <style>
-    :host {
-      display: none;
-    }
+      :host {
+        display: none;
+      }
     </style>
-    <core-ajax id="ajax"
-      auto
-      url="data.json"
-      on-core-response="{{worksLoaded}}"
-      handleAs="json">
-    </core-ajax>
+    <iron-ajax id="ajax"
+               auto
+               url="data.json"
+               on-response="worksLoaded"
+               handleAs="json">
+    </iron-ajax>
   </template>
   <script>
-  Polymer('steren-work-service', {
-    created: function() {
-      this.works = [];
-    },
-    worksLoaded: function() {
-      // Make a copy of the loaded data
-      this.works = this.$.ajax.response.slice(0);
-    }
-  });
+    Polymer({
+      is: "steren-work-service",
+      properties: {
+        works: {
+          type: Array
+        }
+      },
+      created: function() {
+        this.works = [];
+      },
+      worksLoaded: function() {
+        // Make a copy of the loaded data
+        this.works = this.$.ajax.lastResponse.slice(0);
+        console.log(this.works);
+      },
+    });
   </script>
-</polymer-element>
+</dom-module>

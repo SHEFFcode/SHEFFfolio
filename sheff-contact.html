@@ -1,0 +1,45 @@
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/iron-form/iron-form.html">
+<link rel="import" href="components/paper-input/paper-input.html">
+<link rel="import" href="components/paper-input/paper-textarea.html">
+<link rel="import" href="components/paper-button/paper-button.html">
+
+<dom-module id="sheff-contact">
+  <template>
+    <style is="custom-style">
+      iron-autogrow-textarea{
+        --iron-autogrow-textarea: true;
+      }
+      paper-button {
+        background: #000;
+        color: #fff;
+        margin: 0;
+      }
+    </style>
+
+    <paper-material elevation="1">
+      <form is="iron-form" id="form" action="mailto:sheff_ne@yahoo.com" method="post" enctype="text/plain">
+        <h3>Contact</h3>
+        <paper-input id="name" name="name" label="name"></paper-input>
+        <paper-input id="email" name="email" label="email"></paper-input>
+        <paper-textarea id="message" label="message"></paper-textarea>
+        <br>
+        <br>
+        <paper-button raised onclick="submitForm()">Contact</paper-button>
+      </form>
+    </paper-material>
+
+  </template>
+  <script>
+    Polymer({
+      is: "sheff-contact"
+    });
+    
+  function submitForm() {
+    var link = 'mailto:email@example.com?subject=Message from '
+             +document.getElementById('name').value
+             +document.getElementById('message').value+document.getElementById('email').value;
+    window.location.href = link;
+  }
+  </script>
+  </dom-module-element>

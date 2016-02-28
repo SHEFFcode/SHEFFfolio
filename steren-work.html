@@ -1,10 +1,8 @@
-<!--<link rel="import" href="//www.polymer-project.org/0.5/components/polymer/polymer.html">-->
-<link rel="import" href="bower_components/polymer/polymer.html">
-<!--<link rel="import" href="//www.polymer-project.org/0.5/components/core-icon-button/core-icon-button.html">-->
-<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="steren-card.html">
 
-<polymer-element name="steren-work" extends="steren-card" attributes="work">
+<dom-module id="steren-work" is="paper-card">
   <template>
     <style>
     :host(:hover) {
@@ -66,6 +64,13 @@
 
   </template>
   <script>
-  Polymer({});
+  Polymer({
+    is: "steren-work",
+    properties: {
+      work: {
+        type: Object
+      }
+    }
+  });
   </script>
-</polymer-element>
+</dom-module>

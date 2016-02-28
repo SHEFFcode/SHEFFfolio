@@ -1,12 +1,13 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="bower_components/paper-radio-button/paper-radio-button.html">
-<link rel="import" href="bower_components/core-selector/core-selector.html">
+<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="components/iron-selector/iron-selector.html">
+<link rel="import" href="components/iron-meta/iron-meta.html">
 
 <link rel="import" href="steren-work-list.html">
 <link rel="import" href="steren-card.html">
 
-<polymer-element name="steren-works" attributes="show">
+<dom-module id="steren-works">
   <template>
     <style>
 
@@ -58,40 +59,70 @@
         .content-header {
           min-height: 0;
         }
-      
+
         #filters {
           display: none;
         }
       }
+      
+      .hidden{
+        display: none;
+      }
+      
+      
     </style>
+    
 
-    <div class="content-header" layout vertical center> 
-
-      <div layout horizontal center center-justified wrap>
+    <div class="content-header" class="layout vertical center"> 
+     
+      <div class="layout horizontal center center-justified wrap">
         <steren-card id="brief">
           <p>
-              I am Jeremy, a developer from Chicago. 
+            I am Jeremy, a developer from Chicago. 
             <br>
             <br>
-              In February of 2016, I decided to follow a life-long dream to live and code in the Bay Area.
+            In February of 2016, I decided to follow a life-long dream to live and code in the Bay Area.
             <br>
             <br>
-              I have an interest in Rails, Node, Swift and Tableau.
+            I have an interest in Rails, Node, Swift and Tableau.
           </p>
         </steren-card>
       </div>
     </div>
     
-    <steren-work-list show="{{show}}" order="{{order}}" type="{{type}}" participation="{{participation}}" seriousness="{{seriousness}}"></steren-work-list>
+    <div class="layout horizontal center center-justified wrap">
+      <steren-work-list></steren-work-list>
+    </div>
 
   </template>
 
   <script>
-  Polymer({
-    order : 'date',
-    type : ['code', 'graphic', 'event'],
-    participation : ['lead', 'contribution'], 
-    seriousness : ['serious', 'notsoserious']
-  });
+    Polymer({
+      is: "steren-works",
+      properties: {
+        show: {
+          type: String,
+          notify: true,
+          observer: 'log'
+        },
+         category: {
+          type: String
+        }
+      },
+      log: function(){
+          document.querySelector('steren-work-list').show = this.show;
+      },
+      category: {
+          type: String,
+          notify: true
+        },
+      ready: function(){
+        console.log(this.category);
+      },
+      order : 'date',
+      type : ['code', 'graphic', 'event'],
+      participation : ['lead', 'contribution'], 
+      seriousness : ['serious', 'notsoserious']
+    });
   </script>
-</polymer-element>
+</dom-module>

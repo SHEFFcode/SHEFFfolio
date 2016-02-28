@@ -1,0 +1,16 @@
+{
+  "name": "SHEFFfolio",
+  "short_name": "Jeremy's Portfolio",
+  "icons": [{
+        "src": "icon-24.svg",
+        "sizes": "24x24",
+        "type": "image/svg+xml"
+      }, {
+        "src": "icon-48.svg",
+        "sizes": "48",
+        "type": "image/svg+xml"
+      }],
+  "background_color": "#000",
+  "display": "standalone",
+  "theme_color": "#000"
+}
